@@ -1,13 +1,14 @@
 module BowlingScore
   class Frames
-    attr_accessor :values
+    attr_reader :values
 
     def initialize(rolls:)
       @rolls = rolls
       @values = Array.new
+      @current_index = 0
     end
 
-    def fill
+    def generate
       skip_iteration = false
 
       @rolls.each_cons(2) do |roll_1, roll_2|

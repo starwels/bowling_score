@@ -9,9 +9,9 @@ class FramesTest < Test::Unit::TestCase
     @frames = Frames.new(rolls: valid_input)
   end
 
-  def test_fill
-    @frames.fill
-    assert_equal(@frames.values, expected_output)
+  def test_values
+    @frames.generate
+    assert_equal(expected_output, @frames.values)
   end
 
   private
