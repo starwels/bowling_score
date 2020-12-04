@@ -30,7 +30,7 @@ module BowlingScore
     end
 
     def validate_rolls
-      raise InvalidThrowsLength if !@values.size.between?(20,21)
+      raise InvalidThrowsLength if !@values.size.between?(12,21)
     end
   end
 end
