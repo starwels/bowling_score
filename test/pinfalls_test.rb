@@ -2,7 +2,7 @@ require 'test/unit'
 
 require_relative '../lib/bowling_score/pinfalls'
 
-class PinfallsTest < Test::Unit::TestCase
+class BowlingScore::PinfallsTest < Test::Unit::TestCase
   include BowlingScore
 
   def setup
@@ -11,7 +11,7 @@ class PinfallsTest < Test::Unit::TestCase
 
   def test_values
     @pinfalls.generate
-    assert_equal(expected_output, @pinfalls.values)
+    assert_equal(expected_output, @pinfalls.formatted_values)
   end
 
   private
@@ -21,6 +21,6 @@ class PinfallsTest < Test::Unit::TestCase
   end
 
   def expected_output
-    ['', 'X', '7', '/', '9', '0', '', 'X', '0', '8', '8', '/', '0', '6', '', 'X', '', 'X', 'X', '8', '1']
+    "\tX\t7\t/\t9\t0\t\tX\t0\t8\t8\t/\t0\t6\t\tX\t\tX\tX\t8\t1\t"
   end
 end

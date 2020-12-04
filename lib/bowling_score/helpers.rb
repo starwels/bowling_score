@@ -14,5 +14,14 @@ module BowlingScore
     def spare?
       @frames[@current_index].sum == 10
     end
+
+    def format
+      temp = []
+      @values.each do |values|
+        temp << values << self.class::TAB_SEPARATOR
+      end
+
+      @formatted_values = temp.join
+    end
   end
 end

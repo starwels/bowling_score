@@ -4,11 +4,14 @@ module BowlingScore
   class Score
     include Helpers
 
-    attr_reader :values
+    TAB_SEPARATOR = "\t\t"
+
+    attr_reader :formatted_values
 
     def initialize(frames:)
       @frames = frames
-      @values = []
+      @values = Array.new
+      @formatted_values = Array.new
     end
 
     def generate
@@ -29,6 +32,8 @@ module BowlingScore
           score_frame
         end
       end
+
+      format
     end
 
     private

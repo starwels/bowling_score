@@ -11,7 +11,7 @@ class ScoreTest < Test::Unit::TestCase
 
   def test_fill
     @score.generate
-    assert_equal(expected_output, @score.values)
+    assert_equal(expected_output, @score.formatted_values)
   end
 
   private
@@ -21,6 +21,6 @@ class ScoreTest < Test::Unit::TestCase
   end
 
   def expected_output
-    [20, 39, 48, 66, 74, 84, 90, 120, 148, 167]
+    "20\t\t39\t\t48\t\t66\t\t74\t\t84\t\t90\t\t120\t\t148\t\t167\t\t"
   end
 end

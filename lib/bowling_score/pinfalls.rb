@@ -4,11 +4,14 @@ module BowlingScore
   class Pinfalls
     include Helpers
 
-    attr_reader :values
+    TAB_SEPARATOR = "\t"
+
+    attr_reader :formatted_values
 
     def initialize(frames:)
       @frames = frames
       @values = Array.new
+      @formatted_values = Array.new
     end
 
     def generate
@@ -28,6 +31,8 @@ module BowlingScore
           @values << roll_1.to_s << roll_2.to_s
         end
       end
+
+      format
     end
 
     private

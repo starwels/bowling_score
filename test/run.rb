@@ -1,0 +1,5 @@
+require_relative 'file_parser_test'
+require_relative 'frames_test'
+require_relative 'pinfalls_test'
+require_relative 'score_test'
+require_relative 'validator_test'
