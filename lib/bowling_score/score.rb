@@ -24,9 +24,9 @@ module BowlingScore
         end
 
         case
-        when strike?;
+        when strike?
           score_strike
-        when spare?;
+        when spare?
           score_spare
         else
           score_frame
