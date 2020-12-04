@@ -1,5 +1,8 @@
 module BowlingScore
   class Result
+    TAB_SEPARATOR = "\t"
+    NEW_LINE = "\n"
+
     def initialize(players:)
       @players = players
     end
@@ -20,6 +23,7 @@ module BowlingScore
       end
 
       puts @output
+      @output
     end
 
     private
@@ -27,7 +31,7 @@ module BowlingScore
     def generate_frames
       @output = "Frame" << TAB_SEPARATOR << TAB_SEPARATOR
       (1..10).each do |column|
-        @output << column.to_s << TAB_SEPARATOR << "" << TAB_SEPARATOR
+        @output << column.to_s << TAB_SEPARATOR << TAB_SEPARATOR
       end
       @output << NEW_LINE
     end
