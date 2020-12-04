@@ -1,5 +1,9 @@
+require_relative 'helpers'
+
 module BowlingScore
   class Frames
+    include Helpers
+    
     attr_reader :values
 
     def initialize(rolls:)
@@ -9,24 +13,27 @@ module BowlingScore
     end
 
     def generate
-      skip_iteration = false
+      @skip_iteration = false
 
-      @rolls.each_cons(2) do |roll_1, roll_2|
+      @frames = @rolls.each_cons(2).to_a
+
+      @frames.each_with_index do |_, index|
+        @current_index = index
+
         if last_frame?
-          fill_last_frame(roll_1: roll_1, roll_2: roll_2)
+          fill_last_frame
           break
         end
 
-        if skip_iteration
-          skip_iteration = false
+        if @skip_iteration
+          @skip_iteration = false
           next
         end
 
-        if strike?(value: roll_1)
+        if strike?
           fill_strike_frame
         else
-          skip_iteration = true
-          @values << [roll_1, roll_2]
+          fill_frame
         end
       end
     end
@@ -37,20 +44,17 @@ module BowlingScore
       @values << [10, 0]
     end
 
-    def fill_last_frame(roll_1:, roll_2:)
-      @values << if strike?(value: roll_1) || spare?(roll_1: roll_1, roll_2: roll_2)
+    def fill_frame
+      @skip_iteration = true
+      @values << @frames[@current_index]
+    end
+
+    def fill_last_frame
+      @values << if strike? || spare?
                    @rolls[-3..]
                  else
                    @rolls[-2..] << 0
                  end
-    end
-
-    def strike?(value:)
-      value == 10
-    end
-
-    def spare?(roll_1:, roll_2:)
-      roll_1 + roll_2 == 10
     end
 
     def last_frame?

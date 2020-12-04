@@ -1,5 +1,9 @@
+require_relative 'helpers'
+
 module BowlingScore
   class Pinfalls
+    include Helpers
+
     attr_reader :values
 
     def initialize(frames:)
@@ -35,18 +39,6 @@ module BowlingScore
 
       @values << @frames[@current_index].collect { |value| value == 10 ? STRIKE : value.to_s }
       @values.flatten!
-    end
-
-    def last_frame?
-      @current_index == 9
-    end
-
-    def strike?
-      @frames[@current_index].first == 10
-    end
-
-    def spare?
-      @frames[@current_index].sum == 10
     end
 
     def last_frame_spare?

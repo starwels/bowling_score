@@ -10,6 +10,7 @@ class ScoreTest < Test::Unit::TestCase
   end
 
   def test_fill
+    @score.generate
     assert_equal(expected_output, @score.values)
   end
 

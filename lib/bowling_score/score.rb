@@ -1,5 +1,9 @@
+require_relative 'helpers'
+
 module BowlingScore
   class Score
+    include Helpers
+
     attr_reader :values
 
     def initialize(frames:)
@@ -7,7 +11,7 @@ module BowlingScore
       @values = []
     end
 
-    def format
+    def generate
       @frames.each_with_index do |_, index|
         @current_index = index
 
@@ -29,20 +33,8 @@ module BowlingScore
 
     private
 
-    def last_frame?
-      @current_index == 9
-    end
-
-    def strike?
-      @frames[@current_index].first == 10
-    end
-
     def next_frame_strike?
       @frames[@current_index + 1].first == 10
-    end
-
-    def spare?
-      @frames[@current_index].sum == 10
     end
 
     def score_strike
@@ -58,7 +50,11 @@ module BowlingScore
     end
 
     def score_spare
-      @values << @frames[@current_index].sum + @frames[@current_index + 1].first + @values[@current_index - 1]
+      @values << [@frames[@current_index], @frames[@current_index + 1].first]
+                     .push(@values[@current_index - 1])
+                     .flatten
+                     .compact
+                     .sum
     end
 
     def score_frame
