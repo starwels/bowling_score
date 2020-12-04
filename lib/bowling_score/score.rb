@@ -63,7 +63,10 @@ module BowlingScore
     end
 
     def score_frame
-      @values << @frames[@current_index].sum + @values[@current_index - 1]
+      @values << [@frames[@current_index].sum].push(@values[@current_index - 1])
+                     .flatten
+                     .compact
+                     .sum
     end
   end
 end
