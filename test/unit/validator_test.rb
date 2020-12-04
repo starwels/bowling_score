@@ -1,6 +1,6 @@
 require 'test/unit'
 
-require_relative '../lib/bowling_score/validator'
+require_relative '../../lib/bowling_score/validator'
 
 class ValidatorTest < Test::Unit::TestCase
   include BowlingScore

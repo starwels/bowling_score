@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'csv'
 
-require_relative '../lib/bowling_score/file_parser'
+require_relative '../../lib/bowling_score/file_parser'
 
 class FileParserTest < Test::Unit::TestCase
   include BowlingScore

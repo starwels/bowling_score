@@ -1,6 +1,6 @@
 require 'test/unit'
 
-require_relative '../lib/bowling_score/frames'
+require_relative '../../lib/bowling_score/frames'
 
 class FramesTest < Test::Unit::TestCase
   include BowlingScore
